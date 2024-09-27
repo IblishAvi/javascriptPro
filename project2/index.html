@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+    <style>
+        #container{
+            width: 100vw;
+            height: 100vh;
+            background-color: aliceblue;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Body Mass Index Calculator</h1>
+        <form>
+            <p><label for="">Enter Height in C.M </label><input id="height" type="text"></p>
+            <p><label for="">Enter weight in K.G </label><input id="weight" type="text"></p>
+            <button  type="submit">Calculate</button>
+            <div id="results"></div>
+        </form>
+        <div> 
+             <h3>BMI weight guide</h3>
+             <p>Under weight is Less than <b>18.9</b> </p>
+             <p>Normal Range is <b>16.9</b> and <b>24.9</b></p>
+             <p>Overweight is Greater Than <b>24.9</b></p>
+        </div>
+
+    </div>
+  
+    <script>
+     const form = document.querySelector("form");
+
+     form.addEventListener('submit',function(e){
+        e.preventDefault();
+        const height =   parseInt(document.querySelector("#height").value);
+        const weight =   parseInt(document.querySelector("#weight").value);
+        const results =   document.querySelector("#results");
+
+        if(height ==="" ||height < 0 ||isNaN(height)){
+            results.innerHTML = `please Enter valid height ${height}`;
+
+        }
+        else if(weight ==="" ||weight < 0 ||isNaN(weight)){
+            results.innerHTML = `please Enter valid height ${weight}`;
+
+        }
+        else {
+            const BMI = (weight/ ((height*height)/10000)).toFixed(2);
+            results.innerHTML = `<span>${BMI}</span>`;
+        }
+
+     })
+    </script>
+</body>
+</html>
